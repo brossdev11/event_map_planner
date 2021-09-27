@@ -10,6 +10,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@react-google-maps/api": "^2.4.0",
     "axios": "^0.21.4",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.23.0",
@@ -24,7 +25,9 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "react": "16.13.1",
+    "react-async-script-loader": "^0.3.0",
     "react-dom": "16.13.1",
+    "react-google-places-autocomplete": "^2.0.5",
     "react-icons": "^3.11.0",
     "react-notifications-component": "^3.1.0",
     "sass": "^1.29.0",

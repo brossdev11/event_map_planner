@@ -1,4 +1,3 @@
-import SideBar from "../components/Layout/SideBar";
 import Header from "../components/Layout/Header";
 import MainLayout from '../components/Layout/MainLayout';
 import CreateEvent from '../components/CreateEvent';

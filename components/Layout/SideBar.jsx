@@ -6,14 +6,26 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useCurrentUser } from "../../lib/hooks";
 import axios from "axios";
+import { useEffect, useState } from "react";
 const SideBar = () => {
   const router = useRouter();
   const [user ,{ mutate }] = useCurrentUser();
+  const [events, setEvents] = useState([]);
 
   const logout = async () => {
     await axios.delete("/api/auth");
     mutate(null);
   };
+
+  useEffect(() => {
+    initialData();
+  }, [])
+
+  const initialData = () => {
+    axios.get('/api/event').then(({data}) => {
+      setEvents(data.events);
+    })
+  }
 
   return (
     <div className="w-[269px] h-[calc(100vh-90px)] bg-white pt-16 text-[#868686] absolute top-0 left-0">
@@ -44,14 +56,16 @@ const SideBar = () => {
               }}
             >Create Event</div>
           </Link>
-          <Link href="/cheese_festival">
-            <div 
-              className="text-md font-medium"
-              style={{
-                color: router.pathname === "/cheese_festival" ? "#6e84ff" : "#868686",
-              }}
-            >Cheese festival</div>
-          </Link>
+          { events && events.map((event, key) => (
+            <Link href={`/event/${event._id}`} key={key}>
+              <div 
+                className="text-md font-medium"
+                style={{
+                  color: router.asPath === `/event/${event._id}` ? "#6e84ff" : "#868686",
+                }}
+              >{event.name}</div>
+            </Link>
+          ))}
         </div>
       </div>
 
